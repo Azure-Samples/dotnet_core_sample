@@ -4,6 +4,31 @@ For all samples to set up GitHub workflows, see [Create your first workflow](htt
 
 For more information on building .NET Core applications, see [.NET Core](https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=azure-devops).
 
+# Steps to create an End-to-End CI/CD Workflow
+
+## Pre-requisites
+* Create a new Web App in Azure Portal with runtime stack as .NETCore and OS as Linux/Windows
+* Copy Publish Profile Settings of the app
+
+## Configure secrets in the GH repo:
+* In the GH repo with Application code, [Define a new secret](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md) under repository by navigating to **settings** > **secrets** > **Add a new secret** 
+* Paste the contents for the downloaded publish profile file into the secret's value field
+* Now in the workflow file in your branch: `.github/workflows/workflow.yml` replace the secret for the input `publish-profile:` of the deploy Azure WebApp action
+
+## test your workflow
+* Commit a change in the app code. For example introduce a text change in the [index file](https://github.com/bbq-beets/ignite/blob/ActionsDemo/Views/Home/Index.cshtml).
+* You should see a new GitHub Action initiated in **Actions** tab.
+* At the end of the execution, navigate to the App URL to visualise the change introduced.
+
+## Workflow YAML explained
+
+* [Checkout](https://github.com/actions/checkout) Checks out your Git repository content into Github Actions agent.
+* Environment setup using [Setup DotNet](https://github.com/actions/setup-dotnet) - Sets up a dotnet environment by optionally downloading and caching a version of dotnet by SDK version and adding to PATH .
+* DotNet Build & Publish
+* Deploy to App service using azure/webapps-deploy@v1 action which authenticates using [Azure Web App Publish Profile](https://github.com/projectkudu/kudu/wiki/Deployment-credentials#site-credentials-aka-publish-profile-credentials)
+which we configured using the secret set up at the repo level
+
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
