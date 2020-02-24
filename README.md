@@ -2,8 +2,6 @@
 
 For all samples to set up GitHub workflows, see [Create your first workflow](https://github.com/Azure/actions-workflow-samples
 
-For more information on building .NET Core applications, see [.NET Core](https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=azure-devops).
-
 # Steps to create an End-to-End CI/CD Workflow
 
 ## Pre-requisites
@@ -33,7 +31,7 @@ If you are new to Azure App Service, see:
 * Now in the workflow file in your branch: `.github/workflows/workflow.yml` replace the secret for the input `publish-profile:` of the deploy Azure WebApp action
 
 ## test your workflow
-* Commit a change in the app code. For example introduce a text change in the [index file](https://github.com/bbq-beets/ignite/blob/ActionsDemo/Views/Home/Index.cshtml).
+* Commit a change in the app code. 
 * You should see a new GitHub Action initiated in **Actions** tab.
 * At the end of the execution, navigate to the App URL to visualise the change introduced.
 
