@@ -1,4 +1,4 @@
-# Sample ASP.NET Core application for GitHub Actions
+# Sample ASP.NET Core application for GitHub Actions - Test Run
 
 For all samples to set up GitHub workflows, see [Create your first workflow](https://github.com/Azure/actions-workflow-samples
 
