@@ -30,7 +30,7 @@ If you are new to Azure App Service, see:
 * Paste the contents for the downloaded publish profile file into the secret's value field
 * Now in the workflow file in your branch: `.github/workflows/workflow.yml` replace the secret for the input `publish-profile:` of the deploy Azure WebApp action
 
-## test your workflow
+## Test your workflow
 * Commit a change in the app code. 
 * You should see a new GitHub Action initiated in **Actions** tab.
 * At the end of the execution, navigate to the App URL to visualise the change introduced.
