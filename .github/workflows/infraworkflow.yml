@@ -3,7 +3,6 @@ on:
     push:
         paths: 
         - 'ARM/**'
-    workflow_dispatch
 
 env:
     AZURE_SUBSCRIPTION_ID: << Subscription Id >>   # set this to your Azure Subscription Id
