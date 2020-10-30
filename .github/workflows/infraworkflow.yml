@@ -7,7 +7,7 @@ on:
 env:
     AZURE_SUBSCRIPTION_ID: << Subscription Id >>   # set this to your Azure Subscription Id
     
-  jobs:
+jobs:
     build-and-deploy-to-dev:
       runs-on: ubuntu-latest
       steps:
