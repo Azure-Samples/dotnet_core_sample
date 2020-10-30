@@ -5,7 +5,7 @@ on:
         - 'ARM/**'
 
 env:
-    AZURE_SUBSCRIPTION_ID: << Subscription Id >>   # set this to your Azure Subscription Id
+    AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}   # set this to your Azure Subscription Id
     
 jobs:
     build-and-deploy-to-dev:
@@ -13,7 +13,7 @@ jobs:
       steps:
                   
       # Authentication
-      # Set up the following secrets in your repository: AZURE_CREDENTIALS
+      # Set up the following secrets in your repository: AZURE_CREDENTIALS, AZURE_SUBSCRIPTION_ID
       # Below *az ad* command scopes the service principal to a specific Azure subscription *{subscription-id}*
       #    az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/{subscription-id} --sdk-auth           
       # Replace {subscription-id} with the your subscription, resource group details. 
