@@ -35,11 +35,11 @@
                 "displayName": "[parameters('webappName')]"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', '', parameters('aspName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('aspName'))]"
             ],
             "properties": {
                 "name": "[parameters('webappName')]",
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', '', parameters('aspName'))]"
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('aspName'))]"
             }
         },
         {
