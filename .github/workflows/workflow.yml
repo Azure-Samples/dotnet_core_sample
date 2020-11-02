@@ -50,6 +50,11 @@ jobs:
           package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
           slot-name: staging
 
+      - name: Login for az cli commands 
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
       - name: Swap to production slot
         run: |
           az webapp deployment slot swap --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --slot staging --target-slot production
