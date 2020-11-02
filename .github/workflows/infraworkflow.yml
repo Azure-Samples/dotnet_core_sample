@@ -51,7 +51,7 @@ jobs:
           # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID
           scope: resourcegroup
           subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
-          resourcegroup: ${{env.RESOURCEGROUP_NAME}}
+          resourceGroupName: ${{env.RESOURCEGROUP_NAME}}
           region: centralus # Set this to your target region
           template: repo/ARM/azuredeploy.json  # Set this to the location of your template file
           parameters: repo/ARM/azuredeploy.parameters.json # Set this to the location of your parameters file

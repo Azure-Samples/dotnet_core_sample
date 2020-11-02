@@ -19,7 +19,7 @@
             "metadata": {
                 "description": "description"
             },
-            "defaultValue": "S2"
+            "defaultValue": "S1"
         }
     },
     "functions": [],
