@@ -8,7 +8,7 @@ on:
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
     RESOURCEGROUP_NAME: demo-webapp-gh-actions                      # set this to your preferred resource group name
-    WEBAPP_NAME: demo-webapp-gh-actions                          # set this to your preferred resource group name
+    AZURE_WEBAPP_NAME: demo-webapp-gh-actions                          # set this to your preferred resource group name
     ASP_NAME: demo-webapp-gh-actions                            # set this to your preferred resource group name
     
 jobs:
@@ -56,5 +56,6 @@ jobs:
           resourceGroupName: ${{env.RESOURCEGROUP_NAME}}
           region: centralus # Set this to your target region
           template: repo/ARM/azuredeploy.json  # Set this to the location of your template file
-          parameters: webappName=${{env.WEBAPP_NAME}} aspName=${{env.ASP_NAME}} # Set this to the location of your parameters file
+          parameters: webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} # Set this to the location of your parameters file
  
+#TODO: download web app publish profile and add it as a secret to the repo
