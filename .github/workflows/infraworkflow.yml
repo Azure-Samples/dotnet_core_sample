@@ -7,7 +7,7 @@ on:
 
 env:
     AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
-    RESOURCEGROUP_NAME: demo-webapp-gh-actions                      # set this to your preferred resource group name
+    AZURE_RESOURCEGROUP_NAME: demo-webapp-gh-actions                      # set this to your preferred resource group name
     AZURE_WEBAPP_NAME: demo-webapp-gh-actions                          # set this to your preferred resource group name
     ASP_NAME: demo-webapp-gh-actions                            # set this to your preferred resource group name
     
@@ -44,7 +44,7 @@ jobs:
           subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
           region: centralus # Set this to your target region
           template: repo/ARM/azuredeploy.resourcegroup.json  # Set this to the location of your template file
-          parameters: rgName=${{env.RESOURCEGROUP_NAME}} rgLocation=centralus #override rgName in parameters file
+          parameters: rgName=${{env.AZURE_RESOURCEGROUP_NAME}} rgLocation=centralus #override rgName in parameters file
 
       # Deployment of template    
       - name: Deploy ARM Template resources
@@ -53,7 +53,7 @@ jobs:
           # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID
           scope: resourcegroup
           subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
-          resourceGroupName: ${{env.RESOURCEGROUP_NAME}}
+          resourceGroupName: ${{env.AZURE_RESOURCEGROUP_NAME}}
           region: centralus # Set this to your target region
           template: repo/ARM/azuredeploy.json  # Set this to the location of your template file
           parameters: webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} # Set this to the location of your parameters file

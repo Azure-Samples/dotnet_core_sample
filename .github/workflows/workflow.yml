@@ -19,6 +19,7 @@ env:
   AZURE_WEBAPP_NAME: dotnetcoreLinux    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '2.2.402'           # set this to the dot net version to use
+  AZURE_RESOURCEGROUP_NAME: demo-webapp-gh-actions # set this to your preferred resource group name
 
 jobs:
   build-and-deploy:
@@ -48,5 +49,11 @@ jobs:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
           package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
           slot-name: staging
+
+      - name: Swap to production slot
+        run: |
+          az webapp deployment slot swap --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --slot staging --target-slot production
+          echo "Swap finished. App Service Application URL: https://$(az webapp show --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} --name ${{ env.AZURE_WEBAPP_NAME }} --query hostNames[0] -o tsv)"
+
 
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
