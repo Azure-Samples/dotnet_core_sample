@@ -37,6 +37,6 @@ jobs:
           scope: subscription
           subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
           region: centralus # Set this to your target region
-          template: $GITHUB_WORKSPACE/ARM/azuredeploy.resourcegroup.json  # Set this to the location of your template file
-          parameters: $GITHUB_WORKSPACE/ARM/azuredeploy.resourcegroup.parameters.json # Set this to the location of your parameters file
+          template: vermegi/dotnet_core_sample/vermegi/infra/ARM/azuredeploy.resourcegroup.json  # Set this to the location of your template file
+          parameters: vermegi/dotnet_core_sample/vermegi/infra/ARM/azuredeploy.resourcegroup.parameters.json # Set this to the location of your parameters file
   
