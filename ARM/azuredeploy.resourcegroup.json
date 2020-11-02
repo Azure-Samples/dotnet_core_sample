@@ -12,7 +12,8 @@
         "type": "string",
         "metadata": {
           "description": "Location for the resourceGroup"
-        }
+        },
+        "defaultValue": "southcentralus"
       }
     },
     "variables": { },
