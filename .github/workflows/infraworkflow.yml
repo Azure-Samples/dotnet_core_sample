@@ -41,8 +41,8 @@ jobs:
           subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
           region: centralus # Set this to your target region
           template: repo/ARM/azuredeploy.resourcegroup.json  # Set this to the location of your template file
-          parameters: repo/ARM/azuredeploy.resourcegroup.parameters.json # Set this to the location of your parameters file
-          parameters: rgName=${{env.RESOURCEGROUP_NAME}} #override rgName in parameters file
+          #parameters: repo/ARM/azuredeploy.resourcegroup.parameters.json # Set this to the location of your parameters file
+          parameters: rgName=${{env.RESOURCEGROUP_NAME}} rgLocation=centralus #override rgName in parameters file
 
       # Deployment of template    
       - name: Deploy ARM Template resources
