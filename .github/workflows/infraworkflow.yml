@@ -16,14 +16,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
                   
-      # Authentication
-      # Set up the following secrets in your repository: AZURE_CREDENTIALS, AZURE_SUBSCRIPTION_ID
-      # Below *az ad* command scopes the service principal to a specific Azure subscription *{subscription-id}*
-      #    az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/{subscription-id} --sdk-auth           
-      # Replace {subscription-id} with the your subscription, resource group details. 
-      # Example: az ad sp create-for-rbac --name "myApp" --role contributor --scopes /subscriptions/e1046c08-7072-****-****-************  --sdk-auth     
-      # Place the output of the above command as value of secret variable - AZURE_CREDENTIALS
-      # For details on usage of secrets, please refer https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
+      # Please refer to https://github.com/Azure/login#configure-deployment-credentials for help on the Azure login action and setting up your secrets 
       - name: Azure Login
         uses: azure/login@v1
         with:
