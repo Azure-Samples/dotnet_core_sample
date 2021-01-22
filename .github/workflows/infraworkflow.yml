@@ -1,0 +1,54 @@
+name: workflow to deploy an ARM Template to a Subscription Scope
+on: 
+    push:
+        paths: 
+        - 'ARM/**'
+        - '.github/workflows/infraworkflow.yml'
+
+env:
+    AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID  }}    # set this to your Azure Subscription Id
+    AZURE_RESOURCEGROUP_NAME: demo-webapp-gh-actions                      # set this to your preferred resource group name
+    AZURE_WEBAPP_NAME: demo-webapp-gh-actions                          # set this to your preferred resource group name
+    ASP_NAME: demo-webapp-gh-actions                            # set this to your preferred resource group name
+    
+jobs:
+    build-and-deploy-to-dev:
+      runs-on: ubuntu-latest
+      steps:
+                  
+      # Please refer to https://github.com/Azure/login#configure-deployment-credentials for help on the Azure login action and setting up your secrets 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS  }}
+      
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: repo
+          
+      # Deployment of template    
+      - name: Deploy ARM Template resourcegroup
+        uses: azure/arm-deploy@v1
+        with:
+          # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID
+          scope: subscription
+          subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          region: centralus # Set this to your target region
+          template: repo/ARM/azuredeploy.resourcegroup.json  # Set this to the location of your template file
+          parameters: rgName=${{env.AZURE_RESOURCEGROUP_NAME}} rgLocation=centralus #override rgName in parameters file
+
+      # Deployment of template    
+      - name: Deploy ARM Template resources
+        uses: azure/arm-deploy@v1
+        with:
+          # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID
+          scope: resourcegroup
+          subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: ${{env.AZURE_RESOURCEGROUP_NAME}}
+          region: centralus # Set this to your target region
+          template: repo/ARM/azuredeploy.json  # Set this to the location of your template file
+          parameters: webappName=${{env.AZURE_WEBAPP_NAME}} aspName=${{env.ASP_NAME}} # Set this to the location of your parameters file
+ 
+#TODO: download web app publish profile and add it as a secret to the repo
