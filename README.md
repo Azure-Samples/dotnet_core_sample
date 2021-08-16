@@ -16,7 +16,7 @@ For all samples to set up GitHub workflows, see [Create your first workflow](htt
 
 ## Pre-requisites
 * Create a new Web App in Azure Portal with runtime stack as .NETCore and OS as Linux/Windows
-* Copy Publish Profile Settings of the app
+* Copy Publish Profile Settings of the app. If you are using Azure CLI make sure to download the Publish Profile in XML format.
 
 ### Create an ASP.NET App Service in Azure
 
@@ -40,7 +40,7 @@ If you are new to Azure App Service, see:
 * Paste the contents for the downloaded publish profile file into the secret's value field
 * Now in the workflow file in your branch: `.github/workflows/workflow.yml` replace the secret for the input `publish-profile:` of the deploy Azure WebApp action
 
-## test your workflow
+## Test your workflow
 * Commit a change in the app code. 
 * You should see a new GitHub Action initiated in **Actions** tab.
 * At the end of the execution, navigate to the App URL to visualise the change introduced.
@@ -50,7 +50,7 @@ If you are new to Azure App Service, see:
 * [Checkout](https://github.com/actions/checkout) Checks out your Git repository content into Github Actions agent.
 * Environment setup using [Setup DotNet](https://github.com/actions/setup-dotnet) - Sets up a dotnet environment by optionally downloading and caching a version of dotnet by SDK version and adding to PATH .
 * DotNet Build & Publish
-* Deploy to App service using azure/webapps-deploy@v1 action which authenticates using [Azure Web App Publish Profile](https://github.com/projectkudu/kudu/wiki/Deployment-credentials#site-credentials-aka-publish-profile-credentials)
+* Deploy to App service using azure/webapps-deploy@v2 action which authenticates using [Azure Web App Publish Profile](https://github.com/projectkudu/kudu/wiki/Deployment-credentials#site-credentials-aka-publish-profile-credentials)
 which we configured using the secret set up at the repo level
 
 
